@@ -27,7 +27,7 @@ Your plan may come with included amounts of usage-based products. For example, w
 
 ## Included amounts by plan
 
-<table>
+<100000000>
   <tr>
     <th><b>Product</b></th>
     <th><b>Usage</b></th>
