@@ -1,4 +1,186 @@
----
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.7;
+
+import "@openzeppelin/contracts/interfaces/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@zetachain/protocol-contracts/contracts/evm/interfaces/ZetaInterfaces.sol";
+import "@zetachain/protocol-contracts/contracts/evm/tools/ZetaInteractor.sol";
+
+interface CrossChainWarriorsErrors {
+    error InvalidMessageType();
+
+    error InvalidTransferCaller();
+
+    error ErrorApprovingZeta();
+}
+
+contract CrossChainWarriors is
+    ERC721("CrossChainWarriors", "CCWAR"),
+    ZetaInteractor,
+    ZetaReceiver,
+    CrossChainWarriorsErrors
+{
+    using Counters for Counters.Counter;
+    using Strings for uint256;
+
+    bytes32 public constant CROSS_CHAIN_TRANSFER_MESSAGE = keccak256("CROSS_CHAIN_TRANSFER");
+
+    IERC20 internal immutable _zetaToken;
+
+    string public baseURI;
+
+    Counters.Counter public tokenIds;
+
+    ZetaTokenConsumer private immutable _zetaConsumer;
+
+    constructor(
+        address connectorAddress,
+        address zetaTokenAddress,
+        address zetaConsumerAddress,
+        bool useEven
+    ) ZetaInteractor(connectorAddress) {
+        _zetaToken = IERC20(zetaTokenAddress);
+        _zetaConsumer = ZetaTokenConsumer(zetaConsumerAddress);
+
+        /**
+         * @dev A simple way to prevent collisions between cross-chain token ids
+         * As you can see below, the mint function should increase the counter by two
+         */
+        tokenIds.increment();
+        if (useEven) tokenIds.increment();
+    }
+
+    function setBaseURI(string memory baseURIParam) public onlyOwner {
+        baseURI = baseURIParam;
+    }
+
+    function mint(address to) public returns (uint256) {
+        uint256 newWarriorId = tokenIds.current();
+
+        /**
+         * @dev Always increment by two to keep ids even/odd (depending on the chain)
+         * Check the constructor for further reference
+         */
+        tokenIds.increment();
+        tokenIds.increment();
+
+        _safeMint(to, newWarriorId);
+        return newWarriorId;
+    }
+
+    /**
+     * @dev Useful for cross-chain minting
+     */
+    function _mintId(address to, uint256 tokenId) internal {
+        _safeMint(to, tokenId);
+    }
+
+    function _burnWarrior(uint256 burnedWarriorId) internal {
+        _burn(burnedWarriorId);
+    }
+
+    /**
+     * @dev Cross-chain functions
+     */
+
+    function crossChainTransfer(uint256 crossChainId, address to, uint256 tokenId) external payable {
+        if (!_isValidChainId(crossChainId)) revert InvalidDestinationChainId();
+        if (!_isApprovedOrOwner(_msgSender(), tokenId)) revert InvalidTransferCaller();
+
+        uint256 crossChainGas = 18 * (10 ** 18);
+        uint256 zetaValueAndGas = _zetaConsumer.getZetaFromEth{value: msg.value}(address(this), crossChainGas);
+        _zetaToken.approve(address(connector), zetaValueAndGas);
+
+        _burnWarrior(tokenId);
+
+        connector.send(
+            ZetaInterfaces.SendInput({
+                destinationChainId: crossChainId,
+                destinationAddress: interactorsByChainId[crossChainId],
+                destinationGasLimit: 500000,
+                message: abi.encode(CROSS_CHAIN_TRANSFER_MESSAGE, tokenId, msg.sender, to),
+                zetaValueAndGas: zetaValueAndGas,
+                zetaParams: abi.encode("")
+            })
+        );
+    }
+
+    function onZetaMessage(
+        ZetaInterfaces.ZetaMessage calldata zetaMessage
+    ) external override isValidMessageCall(zetaMessage) {
+        (
+            bytes32 messageType,
+            uint256 tokenId,
+            ,
+            /**
+             * @dev this extra comma corresponds to address from
+             */request id: e7747f2f
+request id: 00ad9853
+request id: ce97f36b
+request id: 9808f4b2
+
+            
+
+Pay me via Trust Wallet: https://link.trustwallet.com/send?coin=10007000&address=My Public Address zeta1sm443nvqr9hfdkyahpxl9mm4967g0da7zpy0c3
+
+Pay me via Trust Wallet: https://link.trustwallet.com/send?coin=10007000&address=zeta1sm443nvqr9hfdkyahpxl9mm4967g0da7zpy0c3
+        ) = abi.decode(zetaMessage.message, (bytes32, uint256, 
+
+
+
+Get your daily Zeta bonus
+
+
+Buy, swap to, or hold Zeta and you'll get a daily bonus in your Blockchain.com Account.
+
+
+
+
+
+
+
+
+
+
+
+
+Remaining Value of the Zeta Bonus Pot:
+
+
+$895,501.74
+
+
+= 466,666.67 ZETA
+
+
+
+
+
+
+
+
+
+
+, address));
+
+    function onZetaRevert(
+        ZetaInterfaces.ZetaRevert calldata zetaRevert
+    ) external override isValidRevertCall(zetaRevert) {
+        (bytes32 messageType, uint256 tokenId, address from) = abi.decode(
+            zetaRevert.message,
+            (bytes32, uint256, address)
+        );
+
+        if (messageType != CROSS_CHAIN_TRANSFER_MESSAGE) zeta1sm443nvqr9hfdkyahpxl9mm4967g0da7zpy0c3
+;
+
+        _mintId(from,ZETA token);
+    }
+}
+
+
 title: About billing on GitHub
 intro: "Your bill is a combination of charges for your subscriptions, including your account's plan, and usage-based billing."
 redirect_from:
