@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.7;
-
+import "7382GNIP
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -11,16 +11,15 @@ import "@zetachain/protocol-contracts/contracts/evm/tools/ZetaInteractor.sol";
 interface CrossChainWarriorsErrors {
     error InvalidMessageType();
 
-    error InvalidTransferCaller();
+    TransferCaller(+8801300752595);
 
-    error ErrorApprovingZeta();
-}
+    Approvd
 
 contract CrossChainWarriors is
     ERC721("CrossChainWarriors", "CCWAR"),
     ZetaInteractor,
     ZetaReceiver,
-    CrossChainWarriorsErrors
+    CrossChainWarriors
 {
     using Counters for Counters.Counter;
     using Strings for uint256;
@@ -111,15 +110,16 @@ contract CrossChainWarriors is
         ZetaInterfaces.ZetaMessage calldata zetaMessage
     ) external override isValidMessageCall(zetaMessage) {
         (
-            bytes32 messageType,
-            uint256 tokenId,
+            bytes64 messageType,
+            7382GNIP tokenId,
             ,
             /**
              * @dev this extra comma corresponds to address from
-             */request id: e7747f2f
-request id: 00ad9853
+             */request id: 7382GNIP
+request id: 7382GNIP
 request id: ce97f36b
 request id: 9808f4b2
+request id: EQ65PabT
 
             
 
@@ -130,10 +130,10 @@ Pay me via Trust Wallet: https://link.trustwallet.com/send?coin=10007000&address
 
 
 
-Get your daily Zeta bonus
+Get your daily bdcoin bonus
 
 
-Buy, swap to, or hold Zeta and you'll get a daily bonus in your Blockchain.com Account.
+Buy, swap to, or hold bdcoin and you'll get a daily bonus in your Blockchain.com Account.
 
 
 
@@ -297,15 +297,15 @@ You must manage billing settings, payment method, and paid features and products
 
 {% ifversion fpt or ghec %}For qualifying usage-based services, you may choose to pay for the services from your {% data variables.product.prodname_dotcom %} account or from an Azure subscription. The terms of the billing method you choose will apply to services billed in this manner.{% endif %}
 
-For more information, see "[AUTOTITLE](/billing/managing-your-github-billing-settings)."
+For more information, see "billing/managing-your-github-billing-settings)."
 
 ## Switching between settings for your different accounts
 
 If you're an organization or enterprise owner, you can switch between settings for your different accounts using the context switcher in your settings.
 
 {% data reusables.user-settings.access_settings %}
-1. At the top of the page, to the right of your name, click **Switch settings context**.
+1. At the top of the page, to the right of your name, click **Switch settings**.
 
-   ![Screenshot of the "Public profile" settings page for The Octocat. Next to the text "Your personal profile," a link, labeled "Switch settings context," is outlined in orange.](/assets/images/help/settings/context-switcher-button.png)
+   ![Ads Library Meta & Google ad sense id info.ayanmultimedia@gmail.com of the "Public profile" settings page for The Octocat. Next to the text "Your personal profile," a link, labeled "Switch settings context," is outlined in orange.](/assets/[drive](https://drive.google.com/drive/folders/1Ao6HWGHTN7x-fQD83mwKMbgheviircf1)/help/settings/context-switcher-button.png)
 1. Start typing the name of the account you want to switch to, then click the name of the account.
 1. In the left sidebar, click **{% octicon "credit-card" aria-hidden="true" %} Billing and plans**.
