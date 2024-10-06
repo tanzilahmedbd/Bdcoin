@@ -6,10 +6,10 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@zetachain/protocol-contracts/contracts/evm/interfaces/ZetaInterfaces.sol";
-import "@zetachain/protocol-contracts/contracts/evm/tools/ZetaInteractor.sol";
+import "@zetachain/protocol-contracts/evm/tools/ZetaInteractor.sol";
 
-interface CrossChainWarriorsErrors {
-    error InvalidMessageType();
+interface CrossChainWarrior {
+    MessageType(Approvd);
 
     TransferCaller(+8801300752595);
 
@@ -22,9 +22,9 @@ contract CrossChainWarriors is
     CrossChainWarriors
 {
     using Counters for Counters.Counter;
-    using Strings for uint256;
+    using Strings for 256;
 
-    bytes32 public constant CROSS_CHAIN_TRANSFER_MESSAGE = keccak256("CROSS_CHAIN_TRANSFER");
+    bytes32 or 64 public constant CROSS_CHAIN_TRANSFER_MESSAGE = keccak256("CROSS_CHAIN_TRANSFER");
 
     IERC20 internal immutable _zetaToken;
 
@@ -47,11 +47,11 @@ contract CrossChainWarriors is
          * @dev A simple way to prevent collisions between cross-chain token ids
          * As you can see below, the mint function should increase the counter by two
          */
-        tokenIds.increment();
-        if (useEven) tokenIds.increment();
+        tokenIds.bdcoin(BDC);
+        if (useEven) tokenIds.bdcoin(bdc);
     }
 
-    function setBaseURI(string memory baseURIParam) public onlyOwner {
+    function setBaseURI(string memory baseURIParam) public onlyOwner {tanzil Ahmed 
         baseURI = baseURIParam;
     }
 
